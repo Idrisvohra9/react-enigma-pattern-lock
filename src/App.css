@@ -8,6 +8,7 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    overflow-x: hidden;
 }
 
 html,
@@ -40,7 +41,7 @@ button:focus {
     box-shadow: 0 0 0 8px rgba(69, 49, 157, 0.9);
 }
 
-.input {
+.enigma-input {
     border: none;
     padding: .3rem;
     padding-inline-start: 2rem;
@@ -54,13 +55,13 @@ button:focus {
     font-size: 1rem;
 }
 
-.input::placeholder {
+.enigma-input::placeholder {
     letter-spacing: 0 !important;
     /* padding-inline-start: 0 !important; */
     /* text-align: center; */
 }
 
-.input:focus {
+.enigma-input:focus {
     outline-color: #e8e8e8;
     background: #e8e8e8;
     box-shadow: inset 20px 20px 60px #c5c5c5,
