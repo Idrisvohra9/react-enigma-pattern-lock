@@ -15,6 +15,7 @@
     "Idris",
     "TypeScript"
   ],
+  "icon": "./external-assets/vector-security-padlock-chrome-steel-with-dial-isolated-white_1284-48153.webp",
   "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
