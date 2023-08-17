@@ -1,1 +1,2 @@
-export { default as EnigmaPatternLock } from "./Enigma";
+import EnigmaPatternLock from "./Enigma";
+export default EnigmaPatternLock;

@@ -1,3 +1,1 @@
-import EnigmaPatternLock from "./components/Enigma";
-
-export default EnigmaPatternLock;
+export * from "./components";

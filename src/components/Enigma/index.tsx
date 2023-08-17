@@ -34,9 +34,9 @@ interface EnigmaPatternLockProps {
  * @param onSuccess Callback function if the pin is successfully entered.
  * @param onFailure Callback function if incorrect attempts have been made more than the specified totalTries.
  * @param onTryDepeletion Callback function with the number of tries getting depleted to handle the alert on the user side.
- * @param totalTries Number of tries set to attempt the pin.
- * @param changeKeypad Boolean if change in format affects the keypad numbers
- * @param formatChangeBtn Boolean to hide or show the formatChange button.
+ * @param totalTries? Number of tries set to attempt the pin.
+ * @param changeKeypad? Boolean if change in format affects the keypad numbers
+ * @param formatChangeBtn? Boolean to hide or show the formatChange button default true.
  * 
  * 
  * @returns {JSX.Element} The Enigma pattern authenticator
