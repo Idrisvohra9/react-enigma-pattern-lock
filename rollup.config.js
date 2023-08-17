@@ -1,33 +1,43 @@
-import babel from 'rollup-plugin-babel';
-import external from 'rollup-plugin-peer-deps-external';
-import { terser } from 'rollup-plugin-terser';// for minifying build stuff
-import postcss from 'rollup-plugin-postcss';// For modern css transforms
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
+import { terser } from 'rollup-plugin-terser';
 
 export default [
     {
-        input: './src/index.js',
+        input: 'src/index.ts',
         output: [
             {
-                file: 'dist/index.js',
+                file: "dist/cjs/index.js",
                 format: 'cjs',
+                sourcemap: true,
             },
             {
-                file: 'dist/index.es.js',
-                format: 'es',
-                exports: 'named',
+                file: "dist/esm/index.js",
+                format: 'esm',
+                sourcemap: true,
             }
         ],
         plugins: [
+            resolve(),
+            commonjs({
+                include: /node_modules/,
+                requireReturnsDefault: 'auto', // <---- this solves default issue
+            }),
+            babel({
+                babelHelpers: 'runtime',
+                presets: ['@babel/preset-react', '@babel/preset-env'],
+                plugins: ['@babel/plugin-transform-runtime'],
+                exclude: 'node_modules/**',
+            }),
             postcss({
                 plugins: [],
                 minimize: true,
+                extract: true
             }),
-            babel({
-                exclude: 'node_modules/**',
-                presets: ['@babel/preset-react']
-            }),
-            external(),
             terser(),
-        ]
+        ],
+        external: ['react', 'react-dom', '@babel/runtime'], // Specify external dependencies
     }
 ];

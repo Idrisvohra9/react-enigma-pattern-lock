@@ -1,6 +1,6 @@
 // import React from 'react'
 // import { storiesOf } from "@storybook/react";
-import EnigmaPatternLock from '..';
+import EnigmaPatternLock from '../components';
 import type { Meta, StoryObj } from '@storybook/react';
 // const stories = storiesOf("App test", module)
 const meta: Meta<typeof EnigmaPatternLock> = {

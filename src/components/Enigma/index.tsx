@@ -1,7 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./App.css";
-import Button from "./components/Button";
-
+import "../index.css";
+interface ButtonProps {
+    checkPattern: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    value: number;
+}
+const Button: React.FunctionComponent<ButtonProps> = ({ checkPattern, value }) => {
+    return (
+        <button
+            type="button"
+            className="btn btn-light px-3 py-2"
+            aria-label={`${value}`}
+            onClick={checkPattern}
+        >{value}</button>
+    )
+}
 interface EnigmaPatternLockProps {
     pattern: string;
     format?: Array<string>;
