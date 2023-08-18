@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./index.css";
+import "./styles/index.css";
 interface ButtonProps {
     checkPin: (e: React.MouseEvent<HTMLButtonElement>) => void;
     value: number;
 }
-const Button: React.FunctionComponent<ButtonProps> = ({ checkPin, value }) => {
+const Button: React.FunctionComponent<ButtonProps> = ({ checkPin, value }): React.JSX.Element => {
     return (
         <button
             type="button"
@@ -50,7 +50,7 @@ const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
     totalTries = 5,
     changeKeypad = true,
     formatChangeBtn = true,
-}) => {
+}): React.JSX.Element => {
     const originalButtonNos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const allFormats = ["P", "Q", "R", "S"];
     const [currentPin, setPin] = useState(pin);

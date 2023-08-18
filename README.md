@@ -2,7 +2,7 @@
   <img src="https://img.freepik.com/free-vector/vector-security-padlock-chrome-steel-with-dial-isolated-white_1284-48153.jpg?size=626&ext=jpg&uid=R84241264&ga=GA1.1.1605797513.1690805042&semt=ais" alt="Alt Text" width="80" height="80">
 </p>
 
-# React Enigma Pattern Lock 🔐
+# React Enigma Pin Lock 🔐
 
 - Used when dealing with Admin Auth if you are bored with simple enter username password screen.
 
@@ -60,13 +60,44 @@ To understand format characters let us assume that the pin is **"1040"**. And th
 
 | Format | Pin  | Keypad Numbers               |
 | ------ | ---- | ---------------------------- |
-| P      | 0014 | 1, 2, 3, 4, 5, 6, 7, 8, 9    |
+| P      | 0014 | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 |
 | Q      | 1040 | 1, 0, 3, 2, 5, 4, 7, 6, 9, 8 |
-| R      | 0401 | 9, 8, 7, 6, 5, 4, 3, 2, 1    |
-| S      | 0401 | 0, 2, 4, 6, 8, 1, 3, 5, 7    |
+| R      | 0401 | 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 |
+| S      | 0401 | 0, 2, 4, 6, 8, 1, 3, 5, 7, 9 |
 
 > **Note**: If the changeKeypad is set to false it will not change the keypad.
 
 ## Use cases:
 
+Basic Code to get started:
+
+```js
+// Imports:
+import EnigmaPatternLock from "react-enigma-pin-lock";
+import "react-enigma-pin-lock/dist/styles/bundle.css";
+
+// Component:
+<EnigmaPatternLock
+  pin="1020"
+  totalTries={5}
+  onSuccess={() => alert("Success")}
+  onFailure={() => alert("Failure")}
+  onTryDepeletion={(remainingTries) =>
+    console.log("Tries remain: " + remainingTries)
+  }
+  formatChangeBtn
+  format={["P", "Q", "R", "S"]}
+/>;
+```
+
 ## Screenshots:
+
+![Screenshot](./external-assets/Screenshot%201.png)
+![Screenshot](./external-assets/Screenshot%202.png)
+![Screenshot](./external-assets/Screenshot%203.png)
+![Screenshot](./external-assets/Screenshot%204.png)
+![Screenshot](./external-assets/Screenshot%205.png)
+![Screenshot](./external-assets/Screenshot%206.png)
+<a href="https://github.com/Idrisvohra9/" style="background-color:#1d1d2b;padding:5px; border-radius:5px;">Drop a follow or star
+<img src="https://img.freepik.com/free-icon/github_318-698188.jpg?t=st=1692356345~exp=1692356945~hmac=8f6d91c75f74f99f8c65d96305f378bc79fc748eb7e66dd77e3056ccb3b6e7ee" width="20" alt="Github"/>
+</a>

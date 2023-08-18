@@ -33,7 +33,8 @@ export default [
             postcss({
                 plugins: [],
                 minimize: true,
-                extract: true
+                extract: true,
+                extract: 'styles/bundle.css',
             }),
             terser(),
             typescript({ sourceMap: true }),

@@ -1,6 +1,6 @@
 {
   "name": "react-enigma-pin-lock",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Set and use a pin and change the pattern dynamically, enabling the authenticated person to know the patterns as per the formats.",
   "keywords": [
     "Auth",
