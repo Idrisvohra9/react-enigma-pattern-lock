@@ -1,6 +1,6 @@
 {
-  "name": "react-enigma-pattern-lock",
-  "version": "1.0.0",
+  "name": "react-enigma-pin-lock",
+  "version": "1.0.3",
   "description": "Set and use a pin and change the pattern dynamically, enabling the authenticated person to know the patterns as per the formats.",
   "keywords": [
     "Auth",
@@ -17,12 +17,12 @@
   ],
   "icon": "./external-assets/vector-security-padlock-chrome-steel-with-dial-isolated-white_1284-48153.webp",
   "type": "module",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",

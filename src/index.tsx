@@ -1,21 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "../index.css";
+import "./index.css";
 interface ButtonProps {
-    checkPattern: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    checkPin: (e: React.MouseEvent<HTMLButtonElement>) => void;
     value: number;
 }
-const Button: React.FunctionComponent<ButtonProps> = ({ checkPattern, value }) => {
+const Button: React.FunctionComponent<ButtonProps> = ({ checkPin, value }) => {
     return (
         <button
             type="button"
             className="btn btn-light px-3 py-2"
             aria-label={`${value}`}
-            onClick={checkPattern}
+            onClick={checkPin}
         >{value}</button>
     )
 }
-interface EnigmaPatternLockProps {
-    pattern: string;
+interface EnigmaPinLockProps {
+    pin: string | undefined;
     format?: Array<string>;
     onSuccess: () => void;
     onFailure: () => void;
@@ -25,12 +25,12 @@ interface EnigmaPatternLockProps {
     formatChangeBtn?: boolean;
 }
 /**
- * @package react-enigma-pattern-lock
- * React component that displays a pattern input field and a set of buttons.
- * The user can enter a pattern by clicking on the buttons, and the component will check if the entered pattern matches the original pattern.
- * The buttons and the pattern/pin itself can be formatted in different ways by clicking on the "Format" button.
- * @param pattern The pattern set for the authentication purposes it can be a String env variable.
- * @param format? Array of characters that represent the uniquie format pattern if undefined: All formats | []: No formats, the change button wouldn't be visible.
+ * @package react-enigma-pin-lock
+ * React component that displays a pin input field and a set of buttons.
+ * The user can enter a pin by clicking on the buttons, and the component will check if the entered pin matches the original pin.
+ * The buttons and the pin itself can be formatted in different ways by clicking on the "Format" button.
+ * @param pin The pin set for the authentication purposes it can be a String env variable.
+ * @param format? Array of characters that represent the uniquie format pin if undefined: All formats | []: No formats, the change button wouldn't be visible.
  * @param onSuccess Callback function if the pin is successfully entered.
  * @param onFailure Callback function if incorrect attempts have been made more than the specified totalTries.
  * @param onTryDepeletion Callback function with the number of tries getting depleted to handle the alert on the user side.
@@ -39,10 +39,10 @@ interface EnigmaPatternLockProps {
  * @param formatChangeBtn? Boolean to hide or show the formatChange button default true.
  * 
  * 
- * @returns {JSX.Element} The Enigma pattern authenticator
+ * @returns {JSX.Element} The Enigma pin authenticator
  */
-const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
-    pattern,
+const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
+    pin = "",
     format,
     onSuccess,
     onFailure,
@@ -53,12 +53,12 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
 }) => {
     const originalButtonNos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const allFormats = ["P", "Q", "R", "S"];
-    const [currentPattern, setPattern] = useState(pattern);
+    const [currentPin, setPin] = useState(pin);
     const [buttonNumbers, setButtonNumbers] = useState(originalButtonNos);
     const [currentFormatChar, setCurrentFormatChar] = useState("P");
     // Initial Format setting logic:
     const [remainingTries, setRemainingTries] = useState(totalTries);
-    const [enteredPattern, setEnteredPattern] = useState("");
+    const [enteredPin, setEnteredPin] = useState("");
     const [currentIndex, setCurrentIndex] = useState(0);
     const formatMapping: Record<string, () => void> = {
         P: formatP,
@@ -66,32 +66,29 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
         R: formatR,
         S: formatS,
     };
-
-    // Pattern -> String env variable, Format -> Array of currentFormatChar characters undefined: All formats | []: No formats and also the change button wouldn't be visible, onSuccess -> Callback function, onFailure -> Callback function, remainingTries -> Number of remainingTries, changeKeypad -> Boolean
-
     // "P" => Numeric Ascending Order, 
     // "Q" => shuffles odd with even, 
     // "R" => Reverse, 
     // "S" => first even then odd
     // Q => 1, 0, 3, 2, 5, 4, 7, 6, 9, 8
 
-    // Check pattern logic
-    const checkPatternLogic = useCallback(() => {
-        if (enteredPattern.length === currentPattern.length) {
-            if (currentPattern === enteredPattern) {
+    // Check pin logic
+    const checkPinLogic = useCallback(() => {
+        if (enteredPin.length === currentPin.length) {
+            if (currentPin === enteredPin) {
                 onSuccess();
             } else {
                 if (remainingTries > 1) {
                     const newRemainingTries = remainingTries - 1;
                     setRemainingTries(newRemainingTries);
                     onTryDepeletion(newRemainingTries);
-                    setEnteredPattern("");
+                    setEnteredPin("");
                 } else {
                     onFailure();
                 }
             }
         }
-    }, [currentPattern, enteredPattern, remainingTries, onSuccess, onFailure, onTryDepeletion]);
+    }, [currentPin, enteredPin, remainingTries, onSuccess, onFailure, onTryDepeletion]);
 
     //   // Responsive input calculations:
     const inputWidthinPercent =
@@ -108,21 +105,21 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
     function formatP() {
         const temp = buttonNumbers;
         temp.sort((a, b) => a - b);
-        const newPattern = Array.from(pattern, digits => parseInt(digits, 10))
+        const newPin = Array.from(pin, digits => parseInt(digits, 10))
             .sort((a, b) => a - b)
             .toString()
             .replace(/,/g, "");
         changeButtons(temp);
-        setPattern(newPattern);
+        setPin(newPin);
     }
     function formatQ() {
         const arr = swapOddWithEven(originalButtonNos);
-        const patternArr = swapOddWithEven(
-            Array.from(pattern, (digit) => parseInt(digit, 10))
+        const PinArr = swapOddWithEven(
+            Array.from(pin, (digit) => parseInt(digit, 10))
         );
-        const newPattern = patternArr.toString().replace(/,/g, "");
+        const newPin = PinArr.toString().replace(/,/g, "");
         changeButtons(arr);
-        setPattern(newPattern);
+        setPin(newPin);
     }
     function swapOddWithEven(arr: Array<number>) {
         const oddNumbers = [];
@@ -151,12 +148,12 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
     }
     function formatR() {
         const temp = originalButtonNos.reverse();
-        const newPattern = Array.from(pattern)
+        const newPin = Array.from(pin)
             .reverse()
             .toString()
             .replace(/,/g, "");
         changeButtons(temp);
-        setPattern(newPattern);
+        setPin(newPin);
     }
     function firstEvenLastOdd(arr: Array<number>) {
         const evenPart = [];
@@ -174,8 +171,8 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
     }
     function formatS() {
         changeButtons(firstEvenLastOdd(originalButtonNos));
-        setPattern(
-            firstEvenLastOdd(Array.from(pattern, (digit) => parseInt(digit, 10)))
+        setPin(
+            firstEvenLastOdd(Array.from(pin, (digit) => parseInt(digit, 10)))
                 .toString()
                 .replace(/,/g, "")
         );
@@ -211,17 +208,27 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
         [currentFormatChar, currentIndex, format]
     );
 
-    const checkPattern = useCallback(
+    const checkPin = useCallback(
         (e: React.MouseEvent<HTMLButtonElement>) => {
             const currentVal = e.currentTarget.innerHTML;
-            setEnteredPattern((prevValue) => prevValue + currentVal);
+            setEnteredPin((prevValue) => prevValue + currentVal);
         },
         []
     );
     useEffect(() => {
-
-        // Call the pattern checking logic here
-        checkPatternLogic();
+        if (!pin) {
+            console.error("No pin provided in the EnigmaPin component. Please provide a pin.");
+        } else {
+            if (pin.length > 8) {
+                console.warn("Using a pin this long is not recommended.")
+            }
+            else if (pin.length < 4) {
+                console.warn("Using a pin this short is not recommended.")
+            } else {
+                // Call the pin checking logic here
+                checkPinLogic();
+            }
+        }
         // If format is not specified make the first format action to be the first format character
         if (!format) {
             setCurrentFormatChar(allFormats[currentIndex]);
@@ -236,29 +243,29 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
         } else {
             setCurrentFormatChar("");
         }
-    }, [checkPatternLogic, currentIndex, format]);
+    }, [checkPinLogic, currentIndex, format]);
 
     return (
-        <div className="enigma-pattern-container">
+        <div className="enigma-pin-container">
             <input
                 type="password"
                 name="text"
                 className="enigma-input"
-                placeholder="Enter Pattern.."
+                placeholder="Enter Pin.."
                 readOnly
-                value={enteredPattern}
-                style={{ width: pattern.length * inputWidthinPercent + "%" }}
+                value={enteredPin}
+                style={{ width: pin.length * inputWidthinPercent + "%" }}
 
             />
             <div className="btns-container">
                 {buttonNumbers.map((num, i) => (
-                    <Button value={num} key={i} checkPattern={checkPattern} />
+                    <Button value={num} key={i} checkPin={checkPin} />
                 ))}
             </div>
             <button
                 className="btn btn-danger mt-3"
                 type="reset"
-                onClick={() => setEnteredPattern("")}
+                onClick={() => setEnteredPin("")}
             >
                 ↩ Clear
             </button>
@@ -277,4 +284,4 @@ const EnigmaPatternLock: React.FunctionComponent<EnigmaPatternLockProps> = ({
     );
 }
 
-export default EnigmaPatternLock;
+export default EnigmaPinLock;
