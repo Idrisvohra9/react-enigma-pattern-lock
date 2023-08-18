@@ -92,12 +92,12 @@ import "react-enigma-pin-lock/dist/styles/bundle.css";
 
 ## Screenshots:
 
-![Screenshot](./external-assets/Screenshot%201.png)
-![Screenshot](./external-assets/Screenshot%202.png)
-![Screenshot](./external-assets/Screenshot%203.png)
-![Screenshot](./external-assets/Screenshot%204.png)
-![Screenshot](./external-assets/Screenshot%205.png)
-![Screenshot](./external-assets/Screenshot%206.png)
+![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%201.png)
+![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%202.png)
+![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%203.png)
+![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%204.png)
+![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%205.png)
+![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%206.png)
 <a href="https://github.com/Idrisvohra9/" style="background-color:#1d1d2b;padding:5px; border-radius:5px;">Drop a follow or star
 <img src="https://img.freepik.com/free-icon/github_318-698188.jpg?t=st=1692356345~exp=1692356945~hmac=8f6d91c75f74f99f8c65d96305f378bc79fc748eb7e66dd77e3056ccb3b6e7ee" width="20" alt="Github"/>
 </a>
