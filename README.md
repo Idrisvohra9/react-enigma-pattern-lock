@@ -98,6 +98,13 @@ import "react-enigma-pin-lock/dist/styles/bundle.css";
 ![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%204.png)
 ![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%205.png)
 ![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%206.png)
-<a href="https://github.com/Idrisvohra9/" style="background-color:#1d1d2b;padding:5px; border-radius:5px;">Drop a follow or star
-<img src="https://img.freepik.com/free-icon/github_318-698188.jpg?t=st=1692356345~exp=1692356945~hmac=8f6d91c75f74f99f8c65d96305f378bc79fc748eb7e66dd77e3056ccb3b6e7ee" width="20" alt="Github"/>
+
+## <a href="https://github.com/Idrisvohra9/">Drop a follow or star
+
+<img src="https://img.freepik.com/free-icon/github_318-698188.jpg?t=st=1692356345~exp=1692356945~hmac=8f6d91c75f74f99f8c65d96305f378bc79fc748eb7e66dd77e3056ccb3b6e7ee" width="30" alt="Github"/>
+</a>
+
+## <a href="https://www.npmjs.com/package/react-enigma-pin-lock">Check out NPM Package
+
+<svg viewBox="0 0 780 250" width="30"><path fill="#231F20" d="M240,250h100v-50h100V0H240V250z M340,50h50v100h-50V50z M480,0v200h100V50h50v150h50V50h50v150h50V0H480z M0,200h100V50h50v150h50V0H0V200z"></path></svg>
 </a>
