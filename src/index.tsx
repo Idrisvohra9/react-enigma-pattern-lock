@@ -17,6 +17,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({ checkPin, value }): Reac
 interface EnigmaPinLockProps {
     pin: string | undefined;
     format?: Array<string>;
+    letterSpacing?: number; 
     onSuccess: () => void;
     onFailure: () => void;
     onTryDepeletion: (RemainingTries: number) => void;
@@ -44,6 +45,7 @@ interface EnigmaPinLockProps {
 const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
     pin = "",
     format,
+    letterSpacing = 2.3,
     onSuccess,
     onFailure,
     onTryDepeletion,
@@ -90,13 +92,6 @@ const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
         }
     }, [currentPin, enteredPin, remainingTries, onSuccess, onFailure, onTryDepeletion]);
 
-    //   // Responsive input calculations:
-    const inputWidthinPercent =
-        window.innerWidth > 400
-            ? window.innerWidth >= 400 && window.innerWidth <= 900
-                ? 10
-                : 6
-            : 18;
     function changeButtons(newButtonNumbers: number[]): void {
         if (changeKeypad) {
             setButtonNumbers(newButtonNumbers);
@@ -254,7 +249,7 @@ const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
                 placeholder="Enter Pin.."
                 readOnly
                 value={enteredPin}
-                style={{ width: pin.length * inputWidthinPercent + "%" }}
+                style={{ letterSpacing: `${letterSpacing}rem` }}
 
             />
             <div className="btns-container">

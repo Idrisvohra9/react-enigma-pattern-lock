@@ -42,6 +42,7 @@ yarn add react-enigma-pattern-lock
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | pin             | The pin set for authentication purposes (String env variable) 4 to 8 characters                                                                                                                       | String   |
 | format          | Array of format characters representing the unique format of pin [See Format Characters](#format-characters) (optional)                                                                               | Array    |
+| letterSpacing   | A value of letter spacing in unit 'rem' to make the letters fit perfectly as per your prefrence in the input field (Optional) default 2.3                                                                                                      | Number   |
 | onSuccess       | Callback function to be executed on successful pin entry                                                                                                                                              | Function |
 | onFailure       | Callback function executed when incorrect attempts exceed totalTries                                                                                                                                  | Function |
 | onTryDepeletion | Callback function with the depleted number of tries for user-side alert                                                                                                                               | Function |
@@ -86,6 +87,7 @@ import "react-enigma-pin-lock/dist/styles/bundle.css";
     console.log("Tries remain: " + remainingTries)
   }
   formatChangeBtn
+  letterSpacing={2}
   format={["P", "Q", "R", "S"]}
 />;
 ```
