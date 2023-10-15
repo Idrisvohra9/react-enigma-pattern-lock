@@ -92,6 +92,11 @@ import "react-enigma-pin-lock/dist/styles/bundle.css";
 />;
 ```
 
+> Can be used in a NextJS application with the following method:
+> * Create a component file and import this component as default and use ["use client" directive](https://react.dev/reference/react/use-client) then again export the component as default.
+
+> Save the remainingTries value as cookie to preserve the remaining tries. This is considered a good authentication practice. It requires a getCookie, setCookie method which can be imported throught the default package. Or by creating custom methods to handle the cookies.
+
 ## Screenshots:
 
 ![Screenshot](https://github.com/Idrisvohra9/react-enigma-pattern-lock/raw/main/external-assets/Screenshot%201.png)

@@ -11,6 +11,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({ checkPin, value }): Reac
             className="btn btn-light px-3 py-2"
             aria-label={`${value}`}
             onClick={checkPin}
+            title={`${value}`}
         >{value}</button>
     )
 }
@@ -22,7 +23,6 @@ interface EnigmaPinLockProps {
     onFailure: () => void;
     onTryDepeletion: (RemainingTries: number) => void;
     totalTries?: number;
-    getRemainingTries?: (RemainingTries: number) => void;
     changeKeypad?: boolean;
     formatChangeBtn?: boolean;
 }
@@ -50,7 +50,6 @@ const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
     onSuccess,
     onFailure,
     onTryDepeletion,
-    getRemainingTries,
     totalTries = 5,
     changeKeypad = true,
     formatChangeBtn = true,
@@ -61,7 +60,7 @@ const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
     const [buttonNumbers, setButtonNumbers] = useState(originalButtonNos);
     const [currentFormatChar, setCurrentFormatChar] = useState("P");
     // Initial Format setting logic:
-    const [remainingTries, setRemainingTries] = useState(Number(localStorage.getItem("remainingTries")) || totalTries);
+    const [remainingTries, setRemainingTries] = useState(totalTries);
     const [enteredPin, setEnteredPin] = useState("");
     const [currentIndex, setCurrentIndex] = useState(0);
     const formatMapping: Record<string, () => void> = {
@@ -85,7 +84,6 @@ const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
                 if (remainingTries > 1) {
                     const newRemainingTries = remainingTries - 1;
                     setRemainingTries(newRemainingTries);
-                    localStorage.setItem("remainingTries", String(newRemainingTries));
                     onTryDepeletion(newRemainingTries);
                     setEnteredPin("");
                 } else {
@@ -214,7 +212,6 @@ const EnigmaPinLock: React.FunctionComponent<EnigmaPinLockProps> = ({
         []
     );
     useEffect(() => {
-        getRemainingTries?.(remainingTries);
         if (!pin) {
             console.error("No pin provided in the EnigmaPin component. Please provide a pin.");
         } else {
